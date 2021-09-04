@@ -1,0 +1,17 @@
+Вытаскивание данных на JS
+let checkIDS = `2183028
+2221212
+2170118
+2183028
+2221212`
+ 
+let emptyesIDS = []
+for (const element of checkIDS.split("\n")) {
+    let request = await fetch(`https://site.com/api/portal/v2.0/visits/${element}/`);
+    let data = await request.json();
+    if (data.results === null) {
+        emptyesIDS.push(element)
+    }
+}
+console.log(`Количество пустых визитов: ${emptyesIDS.length}`)
+emptyesIDS.join(', ')
